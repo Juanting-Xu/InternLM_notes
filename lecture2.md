@@ -30,9 +30,9 @@ pip install accelerate==0.24.1
 
 
 # colne 代码
-···
+```
 git clone https://gitee.com/internlm/InternLM.git
-···
+```
 <img width="409" alt="ded288f99e9a53e1cbae2c1f922fb0f" src="https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/920d87aa-852d-42c7-9ed2-4cf9187841a9">
 
 
