@@ -16,5 +16,11 @@
 
 # 增量续训与监督微调
 
+# openCompass 评测体系
+
+
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/56726f60-6ada-4bd6-beb8-8d1b973a2931)
+
+
 
 
