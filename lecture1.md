@@ -21,6 +21,11 @@
 
 ![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/56726f60-6ada-4bd6-beb8-8d1b973a2931)
 
+# 大模型与agent
+
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/ca15eeb3-e6a3-441e-9472-d75bb4f5841e)
+
+
 
 
 
