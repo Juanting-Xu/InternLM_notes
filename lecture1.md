@@ -25,6 +25,17 @@
 
 ![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/ca15eeb3-e6a3-441e-9472-d75bb4f5841e)
 
+多种智能体能力：ReAct、ReWoo、 AutoGPT
+
+Lagent： 一种轻量级、开源的基于大语言模型的智能体框架
+AgentLego：给大模型提供各种工具的集合
+
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/84fbeba9-5bb3-4b0c-9bc6-409667a9bfca)
+
+
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/fa20cd7e-4b17-41b2-83f6-deab547a824e)
+
+
 
 
 
