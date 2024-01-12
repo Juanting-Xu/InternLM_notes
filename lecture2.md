@@ -37,4 +37,33 @@ git clone https://gitee.com/internlm/InternLM.git
 
 
 
+# 第一个智能对话demo
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/6e00a15f-74cc-4e72-b380-b6f225377e83)
+
+## web demo 运行
+
+1. 切换到 VScode 中，运行 /root/code/InternLM 目录下的 web_demo.py 文件
+
+2. 输入以下命令后，将端口映射到本地。
+   ```
+   cd /root/code/InternLM
+   streamlit run web_demo.py --server.address 127.0.0.1 --server.port 6006
+   ```
+
+<img width="947" alt="492ebfe58d39f46a629c5ae4d5ef65c" src="https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/124cb96c-e865-44b9-b89c-f6a7d623c695">
+
+3. 在本地浏览器输入 http://127.0.0.1:6006 即可。
+
+   <img width="960" alt="61f10c25a0afd0ea43c8ef693bd5981" src="https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/2ba84915-3eeb-4c90-99d8-9c908c56676b">
+
+# 第二个 Lagent 智能体工具调用 Demo
+有报错
+
+<img width="541" alt="ee50c730306b13b881c0e9c0e0dfe80" src="https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/ed93df04-f9ec-498d-a4bf-229db03300df">
+
+
+
+
+
+
 
