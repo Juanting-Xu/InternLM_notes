@@ -69,6 +69,20 @@ git clone https://gitee.com/internlm/InternLM.git
 
 ![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/5f034a31-9763-4d06-ae8b-baf9f843eae5)
 
+运行demo
+
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/3ad9d539-3e11-4852-aa4c-0255e61ac6c7)
+在网页打开demo，体验图文创作
+
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/f84f3ed7-4a78-4e16-9971-7d9f6f85b4dc)
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/f8002900-dd46-47d6-9bb6-b27587f03d66)
+
+
+【这个界面有点不对】
+
+
+
+
 
 
 
