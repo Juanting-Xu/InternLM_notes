@@ -63,6 +63,15 @@ git clone https://gitee.com/internlm/InternLM.git
 
 
 
+## 浦语·灵笔图文理解创作 Demo
+
+环境配置
+
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/5f034a31-9763-4d06-ae8b-baf9f843eae5)
+
+
+
+
 
 
 
