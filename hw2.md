@@ -23,6 +23,11 @@ hf_hub_download(repo_id="internlm/internlm-20b", filename="config.json",
 
 # 浦语·灵笔图文理解创作 Demo
 
+## 图文创作
+
+![042d428977eb9afdfbe23752858eed9](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/a63302e8-511f-4863-99f6-92da3a8eed7c)
+
+
 ## 多模态对话
 
 ![88f443db1097b76affe93110570ee21b_](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/f2640628-0751-48be-9363-2a0430526e9b)
