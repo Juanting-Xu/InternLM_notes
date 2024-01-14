@@ -3,7 +3,21 @@
 
 
 # 使用 huggingface_hub python 包 下载config文件
+1. 安装hugging-face
+```
+pip install -U huggingface_hub
+```
+2. 使用 huggingface_hub 下载模型中的部分文件,脚本如下：
+```
+import os
+from huggingface_hub import hf_hub_download  # Load model directly 
 
+hf_hub_download(repo_id="internlm/internlm-20b", filename="config.json",
+                local_dir="/root/model/internlm-20b/" , endpoint="https://hf-mirror.com")
+```
+3. 下载完成
+
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/546918bb-d872-4e72-8fe4-bf19f4b5000d)
 
 
 
