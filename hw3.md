@@ -1,4 +1,4 @@
-# 环境配置 与模型下载
+# 环境配置与模型下载
 ## 1. 新建一个虚拟环境
 
 ```
@@ -92,7 +92,7 @@ unzip averaged_perceptron_tagger.zip
 
 ![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/feed6fa5-e3c8-4807-9b72-51dd87f42a85)
 
-## 下载本项目代码
+## 6.下载本项目代码
 ```
 cd /root/data
 git clone https://github.com/InternLM/tutorial
@@ -101,6 +101,28 @@ git clone https://github.com/InternLM/tutorial
 
 
 # 知识库搭建
+## 1.  数据收集
 
+我们选择由上海人工智能实验室开源的一系列大模型工具开源仓库作为语料库来源，包括：
+
+OpenCompass：面向大模型评测的一站式平台
+IMDeploy：涵盖了 LLM 任务的全套轻量化、部署和服务解决方案的高效推理工具箱
+XTuner：轻量级微调大语言模型的工具库
+InternLM-XComposer：浦语·灵笔，基于书生·浦语大语言模型研发的视觉-语言大模型
+Lagent：一个轻量级、开源的基于大语言模型的智能体（agent）框架
+InternLM：一个开源的轻量级训练框架，旨在支持大模型训练而无需大量的依赖
+
+```
+# 进入到数据库盘
+cd /root/data
+# clone 上述开源仓库
+git clone https://gitee.com/open-compass/opencompass.git
+git clone https://gitee.com/InternLM/lmdeploy.git
+git clone https://gitee.com/InternLM/xtuner.git
+git clone https://gitee.com/InternLM/InternLM-XComposer.git
+git clone https://gitee.com/InternLM/lagent.git
+git clone https://gitee.com/InternLM/InternLM.git
+```
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/250406c3-6930-4a56-a9a1-de3aa945e211)
 
 
