@@ -1,5 +1,5 @@
-# 环境配置
-1. 新建一个虚拟环境
+# 环境配置 与模型下载
+## 1. 新建一个虚拟环境
 
 ```
 conda create --name langchain_demo --clone=/root/share/conda_envs/internlm-base
@@ -7,7 +7,7 @@ conda create --name langchain_demo --clone=/root/share/conda_envs/internlm-base
 
 ![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/7af64357-6777-4294-b4be-713652761d80)
 
-2. 进入环境，安装相关依赖
+## 2. 进入环境，安装相关依赖
 ```
 conda activate langchain_demo
    # 升级pip
@@ -21,7 +21,7 @@ pip install accelerate==0.24.1
 ```
 ![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/8e8063a0-58bf-4c67-a296-4dc2894c250e)
 
-3. langchian 相关环境配置
+## 3. langchian 相关环境配置
 ```
 pip install langchain==0.0.292
 pip install gradio==4.4.0
@@ -34,7 +34,7 @@ pip install markdown==3.3.7
 ![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/5e8c143f-e6c5-4a1d-b50d-0d18f3a2b2a5)
 
 
-# 模型下载
+## 4. 模型下载
 1. LLM 下载
 
 在本地的 /root/share/temp/model_repos/internlm-chat-7b 目录下已存储有所需的模型文件参数，可以直接拷贝到个人目录的模型保存地址：
@@ -74,5 +74,33 @@ python download_hf.py
 
 ![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/a0eb000c-0835-4961-838a-fb4f494f10fe)
 
-3. 下载 NLTK 相关资源
+## 5. 下载 NLTK 相关资源
+我们在使用开源词向量模型构建开源词向量的时候，需要用到第三方库 nltk 的一些资源。正常情况下，其会自动从互联网上下载，但可能由于网络原因会导致下载中断，此处我们可以从国内仓库镜像地址下载相关资源，保存到服务器上。
+
+我们用以下命令下载 nltk 资源并解压到服务器上：
+
+```
+cd /root
+git clone https://gitee.com/yzy0612/nltk_data.git  --branch gh-pages
+cd nltk_data
+mv packages/*  ./
+cd tokenizers
+unzip punkt.zip
+cd ../taggers
+unzip averaged_perceptron_tagger.zip
+```
+
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/feed6fa5-e3c8-4807-9b72-51dd87f42a85)
+
+## 下载本项目代码
+```
+cd /root/data
+git clone https://github.com/InternLM/tutorial
+```
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/150ac0fe-b595-458a-9e30-fd9d207914dc)
+
+
+# 知识库搭建
+
+
 
