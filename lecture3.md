@@ -6,6 +6,7 @@
 # 大模型开发范式：
 ## RAG：检索增强生成
 核心思想：给大模型外挂一个知识库，对于用户的提问，会首先从知识库中匹配到相关文档，然后将文档和提问一起交给大模型来生成回答，从而提高大模型的知识储备
+
 <img width="271" alt="a489b12e8e3b445ed63296584eccf7e" src="https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/3ff83084-d415-4023-88c7-d9daf08dd86e">
 
 优缺点：
@@ -45,6 +46,10 @@
 将InternLM接入Langchain
 
 <img width="505" alt="c2067300ab5ef82e53527d229d6fdcd" src="https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/6c9b36ad-655c-4977-b53f-ffe4d5631b77">
+
+
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/71d03c98-58b8-4a75-b7cd-544393221b1f)
+
 
 
 
