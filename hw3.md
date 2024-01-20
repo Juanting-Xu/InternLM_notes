@@ -210,6 +210,49 @@ vectordb.persist()
 
 #  InternLM 接入 LangChain
 
+为便捷构建 LLM 应用，我们需要基于本地部署的 InternLM，继承 LangChain 的 LLM 类自定义一个 InternLM LLM 子类，从而实现将 InternLM 接入到 LangChain 框架中。完成 LangChain 的自定义 LLM 子类之后，可以以完全一致的方式调用 LangChain 的接口，而无需考虑底层模型调用的不一致。
+
+基于本地部署的 InternLM 自定义 LLM 类并不复杂，我们只需从 LangChain.llms.base.LLM 类继承一个子类，并重写构造函数与 _call 函数即可：
+```
+from langchain.llms.base import LLM
+from typing import Any, List, Optional
+from langchain.callbacks.manager import CallbackManagerForLLMRun
+from transformers import AutoTokenizer, AutoModelForCausalLM
+import torch
+
+class InternLM_LLM(LLM):
+    # 基于本地 InternLM 自定义 LLM 类
+    tokenizer : AutoTokenizer = None
+    model: AutoModelForCausalLM = None
+
+    def __init__(self, model_path :str):
+        # model_path: InternLM 模型路径
+        # 从本地初始化模型
+        super().__init__()
+        print("正在从本地加载模型...")
+        self.tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
+        self.model = AutoModelForCausalLM.from_pretrained(model_path, trust_remote_code=True).to(torch.bfloat16).cuda()
+        self.model = self.model.eval()
+        print("完成本地模型的加载")
+
+    def _call(self, prompt : str, stop: Optional[List[str]] = None,
+                run_manager: Optional[CallbackManagerForLLMRun] = None,
+                **kwargs: Any):
+        # 重写调用函数
+        system_prompt = """You are an AI assistant whose name is InternLM (书生·浦语).
+        - InternLM (书生·浦语) is a conversational language model that is developed by Shanghai AI Laboratory (上海人工智能实验室). It is designed to be helpful, honest, and harmless.
+        - InternLM (书生·浦语) can understand and communicate fluently in the language chosen by the user such as English and 中文.
+        """
+        
+        messages = [(system_prompt, '')]
+        response, history = self.model.chat(self.tokenizer, prompt , history=messages)
+        return response
+        
+    @property
+    def _llm_type(self) -> str:
+        return "InternLM"
+```
+
 
 # 构建检索问答链
 
@@ -262,6 +305,11 @@ template = """使用以下上下文来回答用户的问题。如果你不知道
 # 调用 LangChain 的方法来实例化一个 Template 对象，该对象包含了 context 和 question 两个变量，在实际调用时，这两个变量会被检索到的文档片段和用户提问填充
 QA_CHAIN_PROMPT = PromptTemplate(input_variables=["context","question"],template=template)
 ```
+
+
+运行的执行结果
+
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/b3351762-0cb2-4a27-8cf5-4d100e29d8cd)
 
 
 
