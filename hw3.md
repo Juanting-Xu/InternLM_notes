@@ -312,6 +312,16 @@ QA_CHAIN_PROMPT = PromptTemplate(input_variables=["context","question"],template
 ![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/b3351762-0cb2-4a27-8cf5-4d100e29d8cd)
 
 
+# 部署 Web Demo
+
+基于 Gradio 框架将其部署到 Web 网页，从而搭建一个小型 Demo，便于测试与使用。
+
+我们首先将上文的代码内容封装为一个返回构建的检索问答链对象的函数，并在启动 Gradio 的第一时间调用该函数得到检索问答链对象，后续直接使用该对象进行问答对话，从而避免重复加载模型：
+
+
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/e7bf36df-dc2b-4670-bed2-c41714d7fcc8)
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/4cab1502-940c-4241-a0a6-83aadcb0b9ec)
+
 
 
 
