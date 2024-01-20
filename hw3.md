@@ -125,4 +125,146 @@ git clone https://gitee.com/InternLM/InternLM.git
 ```
 ![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/250406c3-6930-4a56-a9a1-de3aa945e211)
 
+## 2. 知识库搭建的脚本如下
+
+```
+# 首先导入所需第三方库
+from langchain.document_loaders import UnstructuredFileLoader
+from langchain.document_loaders import UnstructuredMarkdownLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.vectorstores import Chroma
+from langchain.embeddings.huggingface import HuggingFaceEmbeddings
+from tqdm import tqdm
+import os
+
+# 获取文件路径函数
+def get_files(dir_path):
+    # args：dir_path，目标文件夹路径
+    file_list = []
+    for filepath, dirnames, filenames in os.walk(dir_path):
+        # os.walk 函数将递归遍历指定文件夹
+        for filename in filenames:
+            # 通过后缀名判断文件类型是否满足要求
+            if filename.endswith(".md"):
+                # 如果满足要求，将其绝对路径加入到结果列表
+                file_list.append(os.path.join(filepath, filename))
+            elif filename.endswith(".txt"):
+                file_list.append(os.path.join(filepath, filename))
+    return file_list
+
+# 加载文件函数
+def get_text(dir_path):
+    # args：dir_path，目标文件夹路径
+    # 首先调用上文定义的函数得到目标文件路径列表
+    file_lst = get_files(dir_path)
+    # docs 存放加载之后的纯文本对象
+    docs = []
+    # 遍历所有目标文件
+    for one_file in tqdm(file_lst):
+        file_type = one_file.split('.')[-1]
+        if file_type == 'md':
+            loader = UnstructuredMarkdownLoader(one_file)
+        elif file_type == 'txt':
+            loader = UnstructuredFileLoader(one_file)
+        else:
+            # 如果是不符合条件的文件，直接跳过
+            continue
+        docs.extend(loader.load())
+    return docs
+
+# 目标文件夹
+tar_dir = [
+    "/root/data/InternLM",
+    "/root/data/InternLM-XComposer",
+    "/root/data/lagent",
+    "/root/data/lmdeploy",
+    "/root/data/opencompass",
+    "/root/data/xtuner"
+]
+
+# 加载目标文件
+docs = []
+for dir_path in tar_dir:
+    docs.extend(get_text(dir_path))
+
+# 对文本进行分块
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=500, chunk_overlap=150)
+split_docs = text_splitter.split_documents(docs)
+
+# 加载开源词向量模型
+embeddings = HuggingFaceEmbeddings(model_name="/root/data/model/sentence-transformer")
+
+# 构建向量数据库
+# 定义持久化路径
+persist_directory = 'data_base/vector_db/chroma'
+# 加载数据库
+vectordb = Chroma.from_documents(
+    documents=split_docs,
+    embedding=embeddings,
+    persist_directory=persist_directory  # 允许我们将persist_directory目录保存到磁盘上
+)
+# 将加载的向量数据库持久化到磁盘上
+vectordb.persist()
+```
+
+#  InternLM 接入 LangChain
+
+
+# 构建检索问答链
+
+## 1. 加载向量数据库
+
+```
+from langchain.vectorstores import Chroma
+from langchain.embeddings.huggingface import HuggingFaceEmbeddings
+import os
+
+# 定义 Embeddings
+embeddings = HuggingFaceEmbeddings(model_name="/root/data/model/sentence-transformer")
+
+# 向量数据库持久化路径
+persist_directory = 'data_base/vector_db/chroma'
+
+# 加载数据库
+vectordb = Chroma(
+    persist_directory=persist_directory, 
+    embedding_function=embeddings
+)
+```
+
+![image](https://github.com/Juanting-Xu/InternLM_notes/assets/36044048/91c16a52-f2e7-40ba-abc6-a798eb296b45)
+
+
+## 2.实例化自定义 LLM 与 Prompt Template
+
+```
+from LLM import InternLM_LLM
+llm = InternLM_LLM(model_path = "/root/data/model/Shanghai_AI_Laboratory/internlm-chat-7b")
+llm.predict("你是谁")
+```
+
+构建检索问答链，还需要构建一个 Prompt Template，该 Template 其实基于一个带变量的字符串，在检索之后，LangChain 会将检索到的相关文档片段填入到 Template 的变量中，从而实现带知识的 Prompt 构建。我们可以基于 LangChain 的 Template 基类来实例化这样一个 Template 对象：
+
+```
+from langchain.prompts import PromptTemplate
+
+# 我们所构造的 Prompt 模板
+template = """使用以下上下文来回答用户的问题。如果你不知道答案，就说你不知道。总是使用中文回答。
+问题: {question}
+可参考的上下文：
+···
+{context}
+···
+如果给定的上下文无法让你做出回答，请回答你不知道。
+有用的回答:"""
+
+# 调用 LangChain 的方法来实例化一个 Template 对象，该对象包含了 context 和 question 两个变量，在实际调用时，这两个变量会被检索到的文档片段和用户提问填充
+QA_CHAIN_PROMPT = PromptTemplate(input_variables=["context","question"],template=template)
+```
+
+
+
+
+
 
